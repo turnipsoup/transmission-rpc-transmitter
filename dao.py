@@ -63,4 +63,4 @@ class DAO():
 
         logging.info(f"Creating all ({len(start_tables)}) starting tables")
         for table in start_tables:
-            self.create_table(table, start_tables[table])
+            self.create_table(table, start_tables[table].replace(" ", ""))
