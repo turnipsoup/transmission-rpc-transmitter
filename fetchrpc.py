@@ -1,4 +1,4 @@
-import requests, logging
+import requests, logging, uuid, random
 from requests.auth import HTTPBasicAuth
 
 
@@ -15,6 +15,9 @@ class FetchRPC():
             "X-Transmission-Session-Id": self.session_id
         }
 
+
+    def get_uuid(self):
+        return uuid.uuid4()
 
 
     def post(self, json_data: dict) -> str:
@@ -70,7 +73,9 @@ class FetchRPC():
                                 "rateUpload", "totalSize", "peers"]
             },
             "method": "torrent-get",
-            "tag": 4
+            "tag": int(str(int(self.get_uuid().hex, base=16))[:16]) # It returns the tag, so Make the UUID and integer
         }
 
-        return self.post(post_json).strip()
+        resp = self.post(post_json).strip()
+        logging.debug(f"Response: {resp}")
+        return resp
