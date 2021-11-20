@@ -73,7 +73,7 @@ class FetchRPC():
                                 "rateUpload", "totalSize", "peers"]
             },
             "method": "torrent-get",
-            "tag": int(str(int(self.get_uuid().hex, base=16))[:16]) # It returns the tag, so Make the UUID and integer
+            "tag": int(str(int(self.get_uuid().hex, base=16))[:16]) # It returns the tag, so make the UUID an integer
         }
 
         resp = self.post(post_json).strip()
