@@ -34,7 +34,7 @@ class parseRPC():
     def peers(self, peers_json):
         """
         Take the peers response of a torrent and return an array of
-        csv dictionaries (self.dict_to_csv) for each peer
+        csv dictionaries [self.dict_to_csv] for each peer
         """
 
         peers_arr = []

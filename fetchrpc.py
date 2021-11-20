@@ -22,9 +22,6 @@ class FetchRPC():
         POST JSON query to RPC, takes a dictionary
         Return a string of the JSON response
         """
-        
-        if len(self.session_id < 1):
-            logging.warning("There is no Session ID!")
 
         logging.debug(f"Sending request {json_data}")
 

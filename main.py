@@ -7,6 +7,7 @@ logging.basicConfig(format='%(asctime)s |%(levelname)s| %(message)s',
                     datefmt='%m/%d/%Y-%I:%M:%S_%p', 
                     level=logging.DEBUG)
 
+
 URL = "http://192.168.0.250:9091/transmission/rpc"
 AUTH = ("admin", "Jsquad42069")
 
