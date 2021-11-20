@@ -58,7 +58,7 @@ class DAO():
                     isUTP,isUploadingTo,\
                     peerIsChoked,peerIsInterested,\
                     port,progress,rateToClient,\
-                    rateToPeer"
+                    rateToPeer,date,transaction_uuid"
         }
 
         logging.info(f"Creating all ({len(start_tables)}) starting tables")
