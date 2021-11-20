@@ -22,6 +22,9 @@ def main() -> None:
 
     d_ao = dao.DAO("test.db")
 
+    for peer in mydict["arguments"]["torrents"][0]["peers"]:
+        d_ao.insert("peers", par.dict_to_csv(peer)["values"])
+
 
 if __name__ == "__main__":
     main()
