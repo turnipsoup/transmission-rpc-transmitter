@@ -15,17 +15,18 @@ class recordRPC():
 
 
     def record_peers(self) -> None:
+        """
+        Record peers from raw_response to the local DB into table peers
+        """
 
-        tag_value = self.raw_response['tag']
-
-
+        tag_value = self.raw_response['tag'] # Get tag
 
         for torrent in self.raw_response["arguments"]["torrents"]:
-            t_name = torrent['name']
+            t_name = torrent['name'] # Get torrent name
 
             peers = self.parser.peers(torrent["peers"])
 
-            for d in peers:
+            for d in peers: # Add tag, datetime, torren_name to the values to be inserted
                 d["keys"] += f",tag,date,torrent_name"
                 d["values"] += f",{tag_value},{self.dt},{t_name}"
 
