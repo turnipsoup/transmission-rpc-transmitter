@@ -1,6 +1,7 @@
 import requests
 from requests.auth import HTTPBasicAuth
 
+
 class FetchRPC():
     def __init__(self, url, auth=None):
         """
@@ -31,3 +32,25 @@ class FetchRPC():
         session_id = r.text.split("X-Transmission-Session-Id:")[-1].replace("</code></p>", "").strip()
         self.session_id = session_id
         self.headers["X-Transmission-Session-Id"] = session_id
+
+    def get_all_stats(self):
+        """
+        Will get the following stats for all torrents:
+            "name", 
+            "status", 
+            "uploadRatio", 
+            "rateDownload", 
+            "rateUpload", 
+            "totalSize", 
+            "peers"
+        """
+        post_json = {
+            "arguments": {
+                "fields": ["name", "status", "uploadRatio", "rateDownload", 
+                                "rateUpload", "totalSize", "peers"]
+            },
+            "method": "torrent-get",
+            "tag": 4
+        }
+
+        return self.post(post_json)
