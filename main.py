@@ -1,5 +1,5 @@
 ## Local imports
-import fetchrpc, parserpc, dao
+import fetchrpc, parserpc, recordrpc, dao
 
 # Standard library
 import logging
@@ -17,13 +17,17 @@ def main() -> None:
     frpc = fetchrpc.FetchRPC(URL, AUTH)
     frpc.get_session_id()
 
+
     par = parserpc.parseRPC()
-    mydict = par.js_to_dict(frpc.get_all_stats())
+    rpcstats = par.js_to_dict(frpc.get_all_stats())
+
+
 
     d_ao = dao.DAO("test.db")
 
-    for peer in mydict["arguments"]["torrents"][0]["peers"]:
-        d_ao.insert("peers", par.dict_to_csv(peer)["values"])
+    rec = recordrpc.recordRPC(rpcstats, d_ao)
+
+    rec.record_peers()
 
 
 if __name__ == "__main__":
