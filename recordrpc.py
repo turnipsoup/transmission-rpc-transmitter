@@ -24,10 +24,43 @@ class recordRPC():
         for torrent in self.raw_response["arguments"]["torrents"]:
             t_name = torrent['name'] # Get torrent name
 
-            peers = self.parser.peers(torrent["peers"])
+            peers = self.parser.dict_array(torrent["peers"])
 
             for d in peers: # Add tag, datetime, torren_name to the values to be inserted
                 d["keys"] += f",tag,date,torrent_name"
                 d["values"] += f",{tag_value},{self.dt},{t_name}"
 
                 self.dao.insert("peers", d["values"])
+
+    def record_tor_stats(self) -> None:
+        """
+        Gets the following stats for each torrent:
+            name
+            rateDownload
+            rateUpload
+            status
+            totalSize
+            uploadRatio
+            tag
+            date
+        """
+
+        logging.debug("Recording torrent stats")
+
+        torrents = []
+
+        for torrent in self.raw_response["arguments"]["torrents"]:
+            tor = {}
+            tor["name"] = torrent["name"]
+            tor["rateDownload"] = torrent["rateDownload"]
+            tor["rateUpload"] = torrent["rateUpload"]
+            tor["status"] = torrent["status"]
+            tor["totalSize"] = torrent["totalSize"]
+            tor["uploadRatio"] = torrent["uploadRatio"]
+            tor["tag"] = self.raw_response["tag"]
+            tor["date"] = self.dt
+
+            torrents.append(tor)
+
+        for d in self.parser.dict_array(torrents):
+            self.dao.insert("stats", d["values"])

@@ -31,9 +31,9 @@ class parseRPC():
         
 
 
-    def peers(self, peers_json):
+    def dict_array(self, peers_json):
         """
-        Take the peers response of a torrent and return an array of
+        Take the [self.dict_to_csv] response of a torrent and return an array of
         csv dictionaries [self.dict_to_csv] for each peer, adding datetime and
         a transaction uuid
         """
