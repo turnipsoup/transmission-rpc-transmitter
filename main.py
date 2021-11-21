@@ -9,7 +9,7 @@ logging.basicConfig(format='%(asctime)s |%(levelname)s| %(message)s',
 
 
 URL = "http://192.168.0.250:9091/transmission/rpc"
-AUTH = ("admin", "Jsquad42069")
+AUTH = ("admin", "<fancy-password-goes-here>")
 
 def main() -> None:
     logging.info("Starting up")
