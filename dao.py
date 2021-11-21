@@ -58,7 +58,9 @@ class DAO():
                     isUTP,isUploadingTo,\
                     peerIsChoked,peerIsInterested,\
                     port,progress,rateToClient,\
-                    rateToPeer,tag,date,torrent_name"
+                    rateToPeer,tag,date,torrent_name",
+            
+            "stats": "name,rateDownload,rateUpload,status,totalSize,uploadRatio,tag,date"
         }
 
         logging.info(f"Creating all ({len(start_tables)}) starting tables")

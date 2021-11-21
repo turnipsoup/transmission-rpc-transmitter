@@ -1,5 +1,6 @@
 .vscode/
 *pycache*
 env/
+*ipynb_*/*
 
 *.db

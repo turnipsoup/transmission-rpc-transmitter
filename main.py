@@ -21,12 +21,14 @@ def main() -> None:
     par = parserpc.parseRPC()
     rpcstats = par.js_to_dict(frpc.get_all_stats())
 
+    
+
 
 
     d_ao = dao.DAO("test.db")
 
     rec = recordrpc.recordRPC(rpcstats, d_ao)
-
+    rec.record_tor_stats()
     rec.record_peers()
 
 
